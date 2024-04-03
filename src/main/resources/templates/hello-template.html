@@ -1,0 +1,6 @@
+<html xmlns:th="http://www.thymeleaf.org"> <!-- thymleaf 템플릿 -->
+<body>
+    <!-- 서버없이 볼때는 안에 적은게 보이고, 서버를 켜고 볼때는 hello+name이 출력 -->
+    <p th:text="'hello ' + ${name}">hello! empty</p>
+</body>
+</html>
