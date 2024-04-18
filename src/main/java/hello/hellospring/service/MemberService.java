@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Optional;
 
 public class MemberService {
+
+    //private final MemberRepository memberRepository = new MemberRepository();
     private final MemberRepository memberRepository;
 
     public MemberService(MemberRepository memberRepository) {
@@ -24,6 +26,7 @@ public class MemberService {
 /*
         // 1번코드
         Optional<Member> result = memberRepository.findByName(member.getName());
+        // m에 값이 있으면 IllegalStateException
         result.ifPresent(m -> {
             throw new IllegalStateException("이미 존재하는 회원입니다.");
         });
@@ -31,9 +34,10 @@ public class MemberService {
         //위 코드의 memberRepository.findByName(member.getName());가 optional을 반환하므로 바로 ifPresent를 사용할 수 있다.
        
         // 2번코드
-        memberRepository.findByName(member.getName()).ifPresent(m -> {
-            throw new IllegalStateException("이미 존재하는 회원입니다.");
-        });
+        memberRepository.findByName(member.getName())
+                .ifPresent(m -> {
+                    throw new IllegalStateException("이미 존재하는 회원입니다.");
+                });
         
         //2번코드에서 리펙토링을 하여 메소드를 따로 빼줄것, 단축키 : ctrl + alt + shift + t 
 */
@@ -43,6 +47,7 @@ public class MemberService {
         return member.getId();
     }
 
+    // 중복회원검증 메서드
     private void validateDuplicateMember(Member member) {
         memberRepository.findByName(member.getName()).ifPresent(m -> {
             throw new IllegalStateException("이미 존재하는 회원입니다.");
