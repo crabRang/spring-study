@@ -1,9 +1,11 @@
 package hello.hellospring.repository;
 
 import hello.hellospring.domain.Member;
+import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
+//@Repository
 public class MemoryMemberRepository implements MemberRepository{
 
     private static Map<Long, Member> store = new HashMap<>(); //회원을 저장할 Map
@@ -42,15 +44,3 @@ public class MemoryMemberRepository implements MemberRepository{
         store.clear();
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
