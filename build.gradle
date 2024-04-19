@@ -16,9 +16,20 @@ repositories {
 }
 
 dependencies {
+	//web, thymeleaf관련 라이브러리 - spring boot 파일 생성 시 자동으로 적어줌
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	//jdbc, h2 데이터베이스 관련 라이브러리
+//	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+	runtimeOnly 'com.h2database:h2'
+
+	//JPA 관련 라이브러리, jdbc가 포함되므로 jdbc라이브러리는 지워도된다.
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
 }
 
 tasks.named('test') {
